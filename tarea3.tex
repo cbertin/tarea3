@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage[spanish]{babel}
 
 \title{Tarea 3 - Redes de Computadores}
 \author{Juan Carlos Arriagada 2973565-4\\Celeste Bertin 201092008-9}
@@ -25,90 +27,98 @@ I don't want this to happen
 
 \fi
 \section{Desarrollo}
-El presente informe se divide en 3 items, los cuales son "vdvds", "bllblabla2" y "blablabla3", los cuales se detallan a continuacion:
+El presente informe se divide en 3 items, los cuales son ''Open Visual Traceroute'', ''tabla de costo de routers'' y ''tabla de costo de routers en caso de modificación de conexiones'', los cuales se detallan a continuación:
 
-\subsection{Parte 1: Open Visual Traceroute }
-Los paquetes viajan de un continente a otro a traves de cables submarinos de fibra optica, los cuales transmiten las señales digitales utilizadas para telecomunicaciones internacionales, entre los cuales esta el internet. Estos cables estan instalados entre continentes de tal forma que si se daña alguno, existe redundancia de las conexiones tal que no se pierda comunicacion de caso de contratiempos. 
-Chile esta conectado al resto del mundo a traves de varios cables submarinos de fibra optica\citep{website:telegeography}, los cuales son:
+\subsection{Open Visual Traceroute }
+Los paquetes viajan de un continente a otro a través de cables submarinos de fibra óptica, los cuales transmiten las señales digitales utilizadas para telecomunicaciones internacionales, entre los cuales está el internet. Estos cables están instalados entre continentes de tal forma que si se daña alguno, existe redundancia de las conexiones tal que no se pierda comunicación de caso de contratiempos. 
+
+Para transmitir información a través de tan largas distancia, se le agregan al cable repetidores cada 60 kilómetros, los cuales amplifican la señal\citep{website:cablestransoceanicos}.
+
+Chile está conectado al resto del mundo a través de varios cables submarinos de fibra óptica\citep{website:telegeography}, los cuales son:
 \begin{itemize}
   \item Panamericano (PAN-AM)
   \item South America-1 (SAm-1)
-  \item South American Crossing (SAC)/Latin American Nautilus (LAN) \ldots
+  \item South American Crossing (SAC)/Latin American Nautilus (LAN)
 \end{itemize}
 
 Los cuales se pueden ver en la siguiente figura:
-\clearpage
 
-\begin{figure}[h!]
+
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.4]{fiber_chile.png}
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+\fbox{
+\includegraphics[scale=0.35]{underseaCable.png}}
 \caption{Cables submarinos que conectan a Chile a otros continentes}
 \label{fig:cables submarinos}
 \end{figure}
 
 A continuación se utiliza Open Visual Trace Route 5.1.1 para investigar la ruta tomada por los paquetes al acceder a los siguientes sitios web desde Santiago de Chile:
-
 \begin{description}
+\item[Moodle] \hfill \\
+Se ingresó http://moodle.inf.utfsm.cl/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final. Se puede ser que el server de Moodle queda en Valparaíso. Cabe notar que si se accede a Moodle desde el internet de la Universidad misma, se accede directamente, ya que Moodle está en los servidores de la universidad.
 
-  \item[Moodle] \hfill \\
-Se ingresó http://moodle.inf.utfsm.cl/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final
-
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.30]{tracerouteMoodle.png}
+\includegraphics[width=\textwidth]{tracerouteMoodle.png}
 \caption{Trace Route de moodle.inf.utfsm.cl}
 \label{fig:moodle}
 \end{figure}  
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{tracerouteMoodleValpo.png}
+\caption{Trace Route de moodle.inf.utfsm.cl dentro de la red de la Universidad Técnica Federico Santa María}
+\label{fig:moodle valparaiso}
+\end{figure}  
 
 \item[Google.cl] \hfill \\
-Se ingresó http://google.cl/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final
+Se ingresó http://google.cl/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final. Se puede ver que el server de Google.cl está ubicado en Mountain View, Estados Unidos, lo cual concuerda con la sede principal de Google\citep{website:google}.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.30]{tracerouteGoogleCL.png}
+\includegraphics[width=\textwidth]{tracerouteGoogleCL.png}
 \caption{Trace Route de google.cl}
 \label{fig:google}
 \end{figure}    
   
-  
 \item[Cime] \hfill \\
-Se ingresó http://cime.cl/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final
+Se ingresó http://cime.cl/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final. Se puede ver que el server de Cime está en Nueva York, Estados Unidos.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.30]{tracerouteCime.png}
+\includegraphics[width=\textwidth]{tracerouteCime.png}
 \caption{Trace Route de cime.cl}
 \label{fig:cime}
 \end{figure}    
 
-  
 \item[Wikipedia] \hfill \\
-Se ingresó http://wikipedia.com/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final
+Se ingresó http://wikipedia.com/ a Open Visual Trace Route, el cual mostró las rutas tomadas para llevar al server final. Se puede ver que el server de Wikipedia está en San Francisco, Estados Unidos. Esto concuerda con la localización de los servidores de Wikimedia\citep{website:wikimedia}.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.30]{tracerouteWikipedia.png}
+\includegraphics[width=\textwidth]{tracerouteWikipedia.png}
 \caption{Trace Route de wikipedia.com}
 \label{fig:wikipedia}
 \end{figure}    
   
-  
 \item[Embajada de Australia - Chile] \hfill \\
-Se ingresó http://www.chile.embassy.gov.au/ a Open Visual Trace Route, el cual mostró las rutas tomadas por los paquetes. En este caso, nunca llegaron los paquetes a un destino final. Esta particular situacion se da cuando hay un firewall bloqueando ciertos tipos de mensajes ICMP. Esto se hace principalmente para protegerse de ataques DoS.
+Se ingresó http://www.chile.embassy.gov.au/ a Open Visual Trace Route, el cual mostró las rutas tomadas por los paquetes. En este caso, nunca llegaron los paquetes a un destino final. Esta particular situación se da cuando hay un firewall bloqueando ciertos tipos de mensajes ICMP. Esto se hace principalmente para protegerse de ataques DoS.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.30]{traceroute_australia.png}
+\includegraphics[width=\textwidth]{traceroute_australia.png}
 \caption{Trace Route de chile.embassy.gov.au}
 \label{fig:embajadaChilena}
 \end{figure}  
 
 \end{description}
 
+Cabe notar que los saltos mostrados no son siempre iguales, dependen de varios factores, tales como la hora a la que se hizo el acceso o el lugar geográfico desde el cual se hizo. El camino tomado por los paquetes se decide por el algoritmo de vector de distancia, el cual será estudiado en la sección siguiente.
 \clearpage
 
-\subsection{Parte 2: "Tabla de costos routers"}
+\subsection{Tabla de costos routers}
 Para obtener las tablas de costos de todos los routers mediante el algoritmo vector distancia debemos realizar una serie de iteraciones, las cuales seran explicadas paso a paso
 
 \subsubsection*{Primera Iteración: Inicialización inicial tablas de costos}
@@ -572,7 +582,7 @@ Nuevamente se informa a los vecinos que hubo cambios en su tabla de costos, y se
 \\
 
 
-\subsection{Parte 3: "NO RECUERDO QUE VA AQUI"}
+\subsection{Tabla de costo de routers en caso de modificación de conexiones}
 
 \section{Conclusión}
 ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
